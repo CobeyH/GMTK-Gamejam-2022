@@ -333,6 +333,7 @@
 -r:"Library/Bee/artifacts/2400b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/2400b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Chessman.cs"
+"Assets/Scripts/Dice.cs"
 "Assets/Scripts/Game.cs"
 "Assets/Scripts/MovePlate.cs"
 -langversion:9.0

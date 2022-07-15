@@ -42,7 +42,7 @@ public class MovePlate : MonoBehaviour
         }
 
         //Set the Chesspiece's original location to be empty
-        controller.GetComponent<Game>().SetPositionEmpty(reference.GetComponent<Chessman>().GetXBoard(), 
+        controller.GetComponent<Game>().SetPositionEmpty(reference.GetComponent<Chessman>().GetXBoard(),
             reference.GetComponent<Chessman>().GetYBoard());
 
         //Move reference chess piece to this position
@@ -55,6 +55,9 @@ public class MovePlate : MonoBehaviour
 
         //Switch Current Player
         controller.GetComponent<Game>().NextTurn();
+
+        //Switch to roll phase of that player's turn
+        controller.GetComponent<Game>().NextPhase();
 
         //Destroy the move plates including self
         reference.GetComponent<Chessman>().DestroyMovePlates();

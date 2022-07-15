@@ -50,6 +50,7 @@ public class Chessman : MonoBehaviour
 
     public void SetCoords()
     {
+        firstMove = false;
         //Get the board value in order to convert to xy coords
         float x = xBoard;
         float y = yBoard;
@@ -88,13 +89,27 @@ public class Chessman : MonoBehaviour
 
     private void OnMouseUp()
     {
+        // The game isn't over and the clicked on piece belongs to the current player.
         if (!controller.GetComponent<Game>().IsGameOver() && controller.GetComponent<Game>().GetCurrentPlayer() == player)
         {
-            //Remove all moveplates relating to previously selected piece
-            DestroyMovePlates();
+            if (controller.GetComponent<Game>().GetCurrentPhase() == "roll")
+            {
+                if (this.name == "white_pawn")
+                {
+                    this.name = "white_rook";
+                    this.GetComponent<SpriteRenderer>().sprite = white_rook;
 
-            //Create new MovePlates
-            InitiateMovePlates();
+                    controller.GetComponent<Game>().NextPhase();
+                }
+            }
+            else
+            {
+                //Remove all moveplates relating to previously selected piece
+                DestroyMovePlates();
+
+                //Create new MovePlates
+                InitiateMovePlates();
+            }
         }
     }
 
@@ -219,9 +234,9 @@ public class Chessman : MonoBehaviour
     public void PawnMovePlate(int x, int y)
     {
         Game sc = controller.GetComponent<Game>();
+        // Jump moves for pawns on first move
         if (firstMove)
         {
-            firstMove = false;
             PointMovePlate(x, this.name == "white_pawn" ? y + 1 : y - 1);
         }
         if (sc.PositionOnBoard(x, y))

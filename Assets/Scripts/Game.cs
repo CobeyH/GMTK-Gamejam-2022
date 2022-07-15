@@ -18,6 +18,8 @@ public class Game : MonoBehaviour
 
     //current turn
     private string currentPlayer = "white";
+    // Current game phase is either roll or move
+    private string currentPhase = "roll";
 
     //Game Ending
     private bool gameOver = false;
@@ -87,6 +89,11 @@ public class Game : MonoBehaviour
         return currentPlayer;
     }
 
+    public string GetCurrentPhase()
+    {
+        return currentPhase;
+    }
+
     public bool IsGameOver()
     {
         return gameOver;
@@ -104,6 +111,11 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void NextPhase()
+    {
+        currentPhase = currentPhase == "roll" ? "move" : "roll";
+    }
+
     public void Update()
     {
         if (gameOver == true && Input.GetMouseButtonDown(0))
@@ -114,7 +126,7 @@ public class Game : MonoBehaviour
             SceneManager.LoadScene("Game"); //Restarts the game by loading the scene over again
         }
     }
-    
+
     public void Winner(string playerWinner)
     {
         gameOver = true;
