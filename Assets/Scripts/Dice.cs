@@ -29,18 +29,22 @@ public class Dice : MonoBehaviour
     private void Update()
     {
         string phase = controller.GetComponent<Game>().GetCurrentPhase();
-        gameObject.SetActive(phase == "roll" ? true : false);
+        if (rend != null)
+        {
+
+            rend.enabled = (phase == "roll" ? true : false);
+        }
     }
 
     // If you left click over the dice then RollTheDice coroutine is started
     private void OnMouseDown()
     {
-        reference = controller.GetComponent<Game>().GetActivePiece();
+        // Get the active piece when the dice is rolled and send the dice result to it.
+        Game cs = controller.GetComponent<Game>();
+        reference = cs.GetActivePiece();
         if (reference != null)
         {
-
             StartCoroutine("RollTheDice");
-            reference = null;
         }
     }
 
@@ -75,10 +79,8 @@ public class Dice : MonoBehaviour
 
         // Show final dice value in Console
         reference.GetComponent<Chessman>().RerollPiece(finalSide);
-    }
-
-    public void SetReference(GameObject obj)
-    {
-        reference = obj;
+        // When the dice stops. Switch to the moving phase.
+        controller.GetComponent<Game>().NextPhase();
+        reference = null;
     }
 }

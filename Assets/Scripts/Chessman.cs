@@ -99,13 +99,7 @@ public class Chessman : MonoBehaviour
             sc.SetActivePiece(gameObject);
             if (sc.GetCurrentPhase() == "roll")
             {
-                if (this.name == "white_pawn")
-                {
-                    this.name = "white_rook";
-                    this.GetComponent<SpriteRenderer>().sprite = white_rook;
-
-                    controller.GetComponent<Game>().NextPhase();
-                }
+                // Show the roll outcomes.
             }
             else
             {
@@ -308,9 +302,62 @@ public class Chessman : MonoBehaviour
         mpScript.SetCoords(matrixX, matrixY);
     }
 
+    // Gets a value from 1 to 6 and converts the piece to something new depending on the experience.
     public void RerollPiece(int diceValue)
     {
+        int pieceIndex = ApplyExperienceModifier(diceValue);
         Debug.Log(diceValue);
+        switch (pieceIndex)
+        {
+            case 1:
+                this.name = "white_pawn";
+                this.GetComponent<SpriteRenderer>().sprite = white_pawn;
+                Debug.Log(1);
+                break;
+            case 2:
+                this.name = "white_knight";
+                this.GetComponent<SpriteRenderer>().sprite = white_knight;
+                Debug.Log(3);
+                break;
+            case 3:
+                this.name = "white_bishop";
+                this.GetComponent<SpriteRenderer>().sprite = white_bishop;
+                Debug.Log(4);
+                break;
+            case 4:
+                this.name = "white_rook";
+                this.GetComponent<SpriteRenderer>().sprite = white_rook;
+                Debug.Log(5);
+                break;
+            case 5:
+                this.name = "white_queen";
+                this.GetComponent<SpriteRenderer>().sprite = white_queen;
+                Debug.Log(6);
+                break;
+            case 6:
+                this.name = "white_pawn";
+                this.GetComponent<SpriteRenderer>().sprite = white_pawn;
+                Debug.Log(2);
+                break;
+        }
+    }
+
+    private int ApplyExperienceModifier(int diceRoll)
+    {
+        switch (experience)
+        {
+            case 0:
+                return Mathf.Min(1, diceRoll - 3);
+            case 1:
+                return Mathf.Min(diceRoll - 1, 0) % 4 + 1;
+            case 2:
+                return Mathf.Min(diceRoll - 1, 0) % 3 + 3;
+            case 3:
+                return Mathf.Min(diceRoll - 1, 0) % 2 + 6;
+            default:
+                Debug.Log("SHOULD NOT GET HERE");
+                return 1;
+        }
     }
 
     public void AddExperience()
