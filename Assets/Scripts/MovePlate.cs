@@ -53,6 +53,11 @@ public class MovePlate : MonoBehaviour
             Destroy(cp);
             chessman.AddExperience();
         }
+        // Ignore clicks on self
+        else if (plateType == PlateType.self)
+        {
+            return;
+        }
 
         //Set the Chesspiece's original location to be empty
         controller.GetComponent<Game>().SetPositionEmpty(chessman.GetXBoard(),

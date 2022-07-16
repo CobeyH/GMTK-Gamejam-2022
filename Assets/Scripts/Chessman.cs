@@ -118,9 +118,10 @@ public class Chessman : MonoBehaviour
         if (!sc.IsGameOver() && controller.GetComponent<Game>().GetCurrentPlayer() == player)
         {
             sc.SetActivePiece(gameObject);
+            // Highlight active piece
             if (sc.GetCurrentPhase() == "roll")
             {
-                // Show the roll outcomes.
+                MovePlateSelfSpawn(xBoard, yBoard);
             }
             else
             {
@@ -145,6 +146,7 @@ public class Chessman : MonoBehaviour
 
     public void InitiateMovePlates()
     {
+        MovePlateSelfSpawn(xBoard, yBoard);
         switch (this.name)
         {
             case "black_queen":
@@ -319,6 +321,30 @@ public class Chessman : MonoBehaviour
 
         MovePlate mpScript = mp.GetComponent<MovePlate>();
         mpScript.plateType = MovePlate.PlateType.attack;
+        mpScript.SetReference(gameObject);
+        mpScript.SetCoords(matrixX, matrixY);
+    }
+
+    // This is horrible code duplication. Should  be converted to a function that takes a plate type.
+    public void MovePlateSelfSpawn(int matrixX, int matrixY)
+    {
+        //Get the board value in order to convert to xy coords
+        float x = matrixX;
+        float y = matrixY;
+
+        //Adjust by variable offset
+        x *= 0.66f;
+        y *= 0.66f;
+
+        //Add constants (pos 0,0)
+        x += -2.3f;
+        y += -2.3f;
+
+        //Set actual unity values
+        GameObject mp = Instantiate(movePlate, new Vector3(x, y, -3.0f), Quaternion.identity);
+
+        MovePlate mpScript = mp.GetComponent<MovePlate>();
+        mpScript.plateType = MovePlate.PlateType.self;
         mpScript.SetReference(gameObject);
         mpScript.SetCoords(matrixX, matrixY);
     }
