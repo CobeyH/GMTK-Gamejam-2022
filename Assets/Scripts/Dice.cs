@@ -28,11 +28,34 @@ public class Dice : MonoBehaviour
     }
     private void Update()
     {
+        Game cs = controller.GetComponent<Game>();
+        reference = cs.GetActivePiece();
         string phase = controller.GetComponent<Game>().GetCurrentPhase();
         if (rend != null)
         {
-
             rend.enabled = (phase == "roll" ? true : false);
+            if (!rend.enabled) return;
+        }
+        UpdateDicePotentials();
+    }
+
+    private void UpdateDicePotentials()
+    {
+        if (reference == null)
+        {
+            return;
+        }
+        // Show what each dice value would produce when rerolling the active dice.
+        GameObject[] dicePotentials = GameObject.FindGameObjectsWithTag("DicePotential");
+        int i = 1;
+        Chessman cm = reference.GetComponent<Chessman>();
+
+        foreach (GameObject dicePotential in dicePotentials)
+        {
+            int modifiedRoll = cm.ApplyExperienceModifier(i);
+            GameObject spriteHolder = dicePotential.transform.Find("SpriteHolder").gameObject;
+            spriteHolder.GetComponent<SpriteRenderer>().sprite = cm.GetRerolledSprite(modifiedRoll);
+            i++;
         }
     }
 
@@ -40,8 +63,6 @@ public class Dice : MonoBehaviour
     private void OnMouseDown()
     {
         // Get the active piece when the dice is rolled and send the dice result to it.
-        Game cs = controller.GetComponent<Game>();
-        reference = cs.GetActivePiece();
         if (reference != null)
         {
             StartCoroutine("RollTheDice");
@@ -80,6 +101,7 @@ public class Dice : MonoBehaviour
         // Show final dice value in Console
         reference.GetComponent<Chessman>().RerollPiece(finalSide);
         // When the dice stops. Switch to the moving phase.
+        yield return new WaitForSeconds(0.5f);
         controller.GetComponent<Game>().NextPhase();
         reference = null;
     }

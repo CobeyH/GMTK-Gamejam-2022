@@ -42,7 +42,7 @@ public class Chessman : MonoBehaviour
             case "black_rook": this.GetComponent<SpriteRenderer>().sprite = black_rook; player = "black"; experience = 2; break;
             case "black_pawn": this.GetComponent<SpriteRenderer>().sprite = black_pawn; player = "black"; experience = 0; break;
             case "white_queen": this.GetComponent<SpriteRenderer>().sprite = white_queen; player = "white"; experience = 3; break;
-            case "white_knight": this.GetComponent<SpriteRenderer>().sprite = white_knight; player = "white"; experience = 2; break;
+            case "white_knight": this.GetComponent<SpriteRenderer>().sprite = white_knight; player = "white"; experience = 1; break;
             case "white_bishop": this.GetComponent<SpriteRenderer>().sprite = white_bishop; player = "white"; experience = 1; break;
             case "white_king": this.GetComponent<SpriteRenderer>().sprite = white_king; player = "white"; break;
             case "white_rook": this.GetComponent<SpriteRenderer>().sprite = white_rook; player = "white"; experience = 2; break;
@@ -306,54 +306,64 @@ public class Chessman : MonoBehaviour
     public void RerollPiece(int diceValue)
     {
         int pieceIndex = ApplyExperienceModifier(diceValue);
-        Debug.Log(diceValue);
         switch (pieceIndex)
         {
             case 1:
                 this.name = player + "_pawn";
-                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_pawn : black_pawn;
-                Debug.Log(1);
                 break;
             case 2:
                 this.name = player + "_knight";
-                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_knight : black_knight;
-                Debug.Log(2);
                 break;
             case 3:
                 this.name = player + "_bishop";
-                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_bishop : black_bishop;
-                Debug.Log(3);
                 break;
             case 4:
                 this.name = player + "_rook";
-                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_rook : black_rook;
-                Debug.Log(4);
                 break;
             case 5:
                 this.name = player + "_queen";
-                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_queen : black_queen;
-                Debug.Log(5);
                 break;
             case 6:
                 this.name = player + "_king";
-                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_king : black_king;
-                Debug.Log(6);
                 break;
         }
+        this.GetComponent<SpriteRenderer>().sprite = GetRerolledSprite(pieceIndex);
     }
 
-    private int ApplyExperienceModifier(int diceRoll)
+    public Sprite GetRerolledSprite(int diceValue)
+    {
+        bool white = player == "white";
+        switch (diceValue)
+        {
+            case 1:
+                return white ? white_pawn : black_pawn;
+            case 2:
+                return white ? white_knight : black_knight;
+            case 3:
+                return white ? white_bishop : black_bishop;
+            case 4:
+                return white ? white_rook : black_rook;
+            case 5:
+                return white ? white_queen : black_queen;
+            case 6:
+                return white ? white_king : black_king;
+        }
+        Debug.Log("SHOULD NOT GET HERE");
+        return white_king;
+    }
+
+    public int ApplyExperienceModifier(int diceRoll)
     {
         switch (experience)
         {
             case 0:
-                return Mathf.Min(1, diceRoll - 3);
+                return Mathf.Max(1, diceRoll - 3);
             case 1:
-                return Mathf.Min(diceRoll - 1, 0) % 4 + 1;
+                return Mathf.Max(diceRoll - 1, 0) % 4 + 1;
             case 2:
-                return Mathf.Min(diceRoll - 1, 0) % 3 + 3;
+                return Mathf.Max(diceRoll - 1, 0) % 3 + 3;
             case 3:
-                return Mathf.Min(diceRoll - 1, 0) % 2 + 6;
+                return Mathf.Max(diceRoll - 1, 0) % 2 + 6;
             default:
                 Debug.Log("SHOULD NOT GET HERE");
                 return 1;
@@ -362,7 +372,7 @@ public class Chessman : MonoBehaviour
 
     public void AddExperience()
     {
-        experience += 1;
+        experience = Mathf.Min(3, experience + 1);
     }
     public int GetExperience()
     {
