@@ -14,15 +14,26 @@ public class MovePlate : MonoBehaviour
     int matrixX;
     int matrixY;
 
+    public enum PlateType
+    {
+        attack = 0,
+        moving = 1,
+        self = 2,
+    }
     //false: movement, true: attacking
-    public bool attack = false;
+    public PlateType plateType = PlateType.moving;
 
     public void Start()
     {
-        if (attack)
+        if (plateType == PlateType.attack)
         {
             //Set to red
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        }
+        else if (plateType == PlateType.self)
+        {
+            //Set to green
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
         }
     }
 
@@ -32,7 +43,7 @@ public class MovePlate : MonoBehaviour
         Chessman chessman = reference.GetComponent<Chessman>();
 
         //Destroy the victim Chesspiece
-        if (attack)
+        if (plateType == PlateType.attack)
         {
             GameObject cp = controller.GetComponent<Game>().GetPosition(matrixX, matrixY);
 

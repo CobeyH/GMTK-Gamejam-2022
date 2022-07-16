@@ -318,7 +318,7 @@ public class Chessman : MonoBehaviour
         GameObject mp = Instantiate(movePlate, new Vector3(x, y, -3.0f), Quaternion.identity);
 
         MovePlate mpScript = mp.GetComponent<MovePlate>();
-        mpScript.attack = true;
+        mpScript.plateType = MovePlate.PlateType.attack;
         mpScript.SetReference(gameObject);
         mpScript.SetCoords(matrixX, matrixY);
     }
