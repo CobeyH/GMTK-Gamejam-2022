@@ -12,6 +12,8 @@ public class Dice : MonoBehaviour
 
     public GameObject controller;
 
+    GameObject reference = null;
+
     // Use this for initialization
     private void Start()
     {
@@ -28,7 +30,10 @@ public class Dice : MonoBehaviour
     // If you left click over the dice then RollTheDice coroutine is started
     private void OnMouseDown()
     {
-        if (controller.GetComponent<Game>().GetCurrentPhase() == "roll")
+        Game sc = controller.GetComponent<Game>();
+        reference = sc.GetActivePiece();
+        Debug.Log(reference.name);
+        if (sc.GetCurrentPhase() == "roll")
         {
 
             StartCoroutine("RollTheDice");
@@ -65,5 +70,10 @@ public class Dice : MonoBehaviour
 
         // Show final dice value in Console
         Debug.Log(finalSide);
+    }
+
+    public void SetReference(GameObject obj)
+    {
+        reference = obj;
     }
 }

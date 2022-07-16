@@ -16,6 +16,8 @@ public class Game : MonoBehaviour
     private GameObject[] playerBlack = new GameObject[16];
     private GameObject[] playerWhite = new GameObject[16];
 
+    private GameObject activePiece = null;
+
     //current turn
     private string currentPlayer = "white";
     // Current game phase is either roll or move
@@ -125,6 +127,15 @@ public class Game : MonoBehaviour
             //Using UnityEngine.SceneManagement is needed here
             SceneManager.LoadScene("Game"); //Restarts the game by loading the scene over again
         }
+    }
+
+    public void SetActivePiece(GameObject newActive)
+    {
+        activePiece = newActive;
+    }
+    public GameObject GetActivePiece()
+    {
+        return activePiece;
     }
 
     public void Winner(string playerWinner)

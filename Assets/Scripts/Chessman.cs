@@ -91,10 +91,13 @@ public class Chessman : MonoBehaviour
 
     private void OnMouseUp()
     {
+
+        Game sc = controller.GetComponent<Game>();
         // The game isn't over and the clicked on piece belongs to the current player.
-        if (!controller.GetComponent<Game>().IsGameOver() && controller.GetComponent<Game>().GetCurrentPlayer() == player)
+        if (!sc.IsGameOver() && controller.GetComponent<Game>().GetCurrentPlayer() == player)
         {
-            if (controller.GetComponent<Game>().GetCurrentPhase() == "roll")
+            sc.SetActivePiece(gameObject);
+            if (sc.GetCurrentPhase() == "roll")
             {
                 if (this.name == "white_pawn")
                 {
