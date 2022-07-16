@@ -8,6 +8,8 @@ public class Chessman : MonoBehaviour
     public GameObject controller;
     public GameObject movePlate;
 
+    public GameObject experienceIndicator;
+
     //Position for this Chesspiece on the Board
     //The correct position will be set later
     private int xBoard = -1;
@@ -48,11 +50,30 @@ public class Chessman : MonoBehaviour
             case "white_rook": this.GetComponent<SpriteRenderer>().sprite = white_rook; player = "white"; experience = 2; break;
             case "white_pawn": this.GetComponent<SpriteRenderer>().sprite = white_pawn; player = "white"; experience = 0; break;
         }
+        UpdateExperienceIndicators(true);
+    }
+
+    void UpdateExperienceIndicators(bool first)
+    {
+        if (first)
+        {
+
+            for (int i = 0; i < experience; i++)
+            {
+                GameObject ec = Instantiate(Resources.Load("Experience Circle") as GameObject, new Vector3(this.transform.position.x + 0.25f, this.transform.position.y - 0.25f + 0.1f * i, -4f), Quaternion.identity);
+                ec.transform.parent = this.transform;
+            }
+        }
+        else
+        {
+
+            GameObject ec = Instantiate(Resources.Load("Experience Circle") as GameObject, new Vector3(this.transform.position.x + 0.25f, this.transform.position.y - 0.25f + 0.1f * (experience - 1), -4f), Quaternion.identity);
+            ec.transform.parent = this.transform;
+        }
     }
 
     public void SetCoords()
     {
-        firstMove = false;
         //Get the board value in order to convert to xy coords
         float x = xBoard;
         float y = yBoard;
@@ -372,10 +393,19 @@ public class Chessman : MonoBehaviour
 
     public void AddExperience()
     {
-        experience = Mathf.Min(3, experience + 1);
+        if (experience < 3)
+        {
+            experience++;
+            UpdateExperienceIndicators(false);
+        }
     }
     public int GetExperience()
     {
         return experience;
+    }
+
+    public void UpdateFirstMove()
+    {
+        firstMove = false;
     }
 }
