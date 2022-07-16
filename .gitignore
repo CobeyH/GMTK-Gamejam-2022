@@ -4,7 +4,7 @@
 #
 .vscode
 
-**/[Ll]ibrary/
+Library/
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
