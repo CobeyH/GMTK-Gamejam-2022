@@ -118,11 +118,14 @@ public class Chessman : MonoBehaviour
         // The game isn't over and the clicked on piece belongs to the current player.
         if (!sc.IsGameOver() && controller.GetComponent<Game>().GetCurrentPlayer() == player)
         {
-            sc.SetActivePiece(gameObject);
             // Highlight active piece
             if (sc.GetCurrentPhase() == "roll")
             {
-
+                // Pieces can only be rerolled three times
+                if (numRolls >= 3)
+                {
+                    return;
+                }
                 DestroyMovePlates();
                 MovePlateSelfSpawn(xBoard, yBoard);
             }
@@ -134,6 +137,7 @@ public class Chessman : MonoBehaviour
                 //Create new MovePlates
                 InitiateMovePlates();
             }
+            sc.SetActivePiece(gameObject);
         }
     }
 
@@ -355,7 +359,21 @@ public class Chessman : MonoBehaviour
     // Gets a value from 1 to 6 and converts the piece to something new depending on the experience.
     public void RerollPiece(int diceValue)
     {
+        Game gm = controller.GetComponent<Game>();
         int pieceIndex = ApplyExperienceModifier(diceValue);
+        numRolls++;
+        if (this.name == "white_king" || this.name == "black_king")
+        {
+            string activePlayer = gm.GetCurrentPlayer();
+            int kingCount = gm.GetKingCount(activePlayer);
+            if (kingCount <= 1)
+            {
+                gm.Winner(activePlayer == "white" ? "black" : "white");
+            }
+            // Kings should always reroll into pawns.
+            pieceIndex = 1;
+        }
+
         switch (pieceIndex)
         {
             case 1:
@@ -375,13 +393,18 @@ public class Chessman : MonoBehaviour
                 break;
             case 6:
                 this.name = player + "_king";
-                Game gm = controller.GetComponent<Game>();
+                // If a piece is rerolled into a king then add one to the king count.
                 string activePlayer = gm.GetCurrentPlayer();
                 gm.SetKingCount(activePlayer, gm.GetKingCount(activePlayer) + 1);
-                numRolls = 3;
+                // Must prevent soft locking by being unable to lose or reroll.
+                numRolls = Mathf.Min(numRolls, 2);
                 break;
         }
         this.GetComponent<SpriteRenderer>().sprite = GetRerolledSprite(pieceIndex);
+        string stringRolls = numRolls == 1 ? "One" : numRolls == 2 ? "Two" : "Three";
+        Debug.Log(stringRolls + "_reroll");
+        GameObject ec = Instantiate(Resources.Load(stringRolls + "_reroll") as GameObject, new Vector3(this.transform.position.x + 0.025f, this.transform.position.y, -0.01f), Quaternion.identity);
+        ec.transform.parent = this.transform;
     }
 
     public Sprite GetRerolledSprite(int diceValue)
@@ -431,6 +454,7 @@ public class Chessman : MonoBehaviour
             experience++;
             UpdateExperienceIndicators(false);
         }
+        numRolls = Mathf.Max(numRolls - 1, 0);
     }
     public int GetExperience()
     {
