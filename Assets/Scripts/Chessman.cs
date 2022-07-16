@@ -308,6 +308,11 @@ public class Chessman : MonoBehaviour
         mpScript.SetCoords(matrixX, matrixY);
     }
 
+    public void RerollPiece(int diceValue)
+    {
+        Debug.Log(diceValue);
+    }
+
     public void AddExperience()
     {
         experience += 1;
