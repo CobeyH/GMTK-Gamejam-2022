@@ -363,7 +363,7 @@ public class Chessman : MonoBehaviour
             case 2:
                 return Mathf.Max(diceRoll - 1, 0) % 3 + 3;
             case 3:
-                return Mathf.Max(diceRoll - 1, 0) % 2 + 6;
+                return Mathf.Max(diceRoll - 1, 0) % 2 + 5;
             default:
                 Debug.Log("SHOULD NOT GET HERE");
                 return 1;

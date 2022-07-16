@@ -470,7 +470,12 @@ PrefabInstance:
     - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
         type: 3}
       propertyPath: m_Name
-      value: DicePotential1 (2)
+      value: DicePotential2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_TagString
+      value: DicePotential
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}
@@ -831,7 +836,12 @@ PrefabInstance:
     - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
         type: 3}
       propertyPath: m_Name
-      value: DicePotential1 (3)
+      value: DicePotential3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_TagString
+      value: DicePotential
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}
@@ -1057,7 +1067,12 @@ PrefabInstance:
     - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
         type: 3}
       propertyPath: m_Name
-      value: DicePotential1 (4)
+      value: DicePotential4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_TagString
+      value: DicePotential
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}
@@ -1147,7 +1162,12 @@ PrefabInstance:
     - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
         type: 3}
       propertyPath: m_Name
-      value: DicePotential1 (5)
+      value: DicePotential5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_TagString
+      value: DicePotential
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}
@@ -1215,7 +1235,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9ddfbb30ec2c29c4ea0d2144d02c380b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e9de1cadf964ad1c92c96bfd4d3f0aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1235,7 +1255,7 @@ Transform:
   m_GameObject: {fileID: 1989920199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 0.263, y: 0.263, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1327,7 +1347,12 @@ PrefabInstance:
     - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
         type: 3}
       propertyPath: m_Name
-      value: DicePotential1 (6)
+      value: DicePotential6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_TagString
+      value: DicePotential
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}
@@ -1342,21 +1367,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1857020876272668324, guid: 0898820907cd0b36bb844c3eab1e2ca3,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1857020876272668324, guid: 0898820907cd0b36bb844c3eab1e2ca3,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1857020876272668324, guid: 0898820907cd0b36bb844c3eab1e2ca3,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1857020876272668324, guid: 0898820907cd0b36bb844c3eab1e2ca3,
         type: 3}
@@ -1412,6 +1422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DicePotential1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857020876272668326, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_TagString
+      value: DicePotential
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}

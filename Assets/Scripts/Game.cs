@@ -116,6 +116,7 @@ public class Game : MonoBehaviour
     public void NextPhase()
     {
         currentPhase = currentPhase == "roll" ? "move" : "roll";
+        SetActivePiece(null);
     }
 
     public void Update()
