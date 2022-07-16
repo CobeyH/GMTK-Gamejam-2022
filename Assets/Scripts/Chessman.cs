@@ -310,34 +310,34 @@ public class Chessman : MonoBehaviour
         switch (pieceIndex)
         {
             case 1:
-                this.name = "white_pawn";
-                this.GetComponent<SpriteRenderer>().sprite = white_pawn;
+                this.name = player + "_pawn";
+                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_pawn : black_pawn;
                 Debug.Log(1);
                 break;
             case 2:
-                this.name = "white_knight";
-                this.GetComponent<SpriteRenderer>().sprite = white_knight;
-                Debug.Log(3);
+                this.name = player + "_knight";
+                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_knight : black_knight;
+                Debug.Log(2);
                 break;
             case 3:
-                this.name = "white_bishop";
-                this.GetComponent<SpriteRenderer>().sprite = white_bishop;
-                Debug.Log(4);
+                this.name = player + "_bishop";
+                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_bishop : black_bishop;
+                Debug.Log(3);
                 break;
             case 4:
-                this.name = "white_rook";
-                this.GetComponent<SpriteRenderer>().sprite = white_rook;
-                Debug.Log(5);
+                this.name = player + "_rook";
+                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_rook : black_rook;
+                Debug.Log(4);
                 break;
             case 5:
-                this.name = "white_queen";
-                this.GetComponent<SpriteRenderer>().sprite = white_queen;
-                Debug.Log(6);
+                this.name = player + "_queen";
+                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_queen : black_queen;
+                Debug.Log(5);
                 break;
             case 6:
-                this.name = "white_pawn";
-                this.GetComponent<SpriteRenderer>().sprite = white_pawn;
-                Debug.Log(2);
+                this.name = player + "_king";
+                this.GetComponent<SpriteRenderer>().sprite = player == "white" ? white_king : black_king;
+                Debug.Log(6);
                 break;
         }
     }
