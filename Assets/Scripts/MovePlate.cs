@@ -39,6 +39,7 @@ public class MovePlate : MonoBehaviour
             if (cp.name == "black_king") controller.GetComponent<Game>().Winner("white");
 
             Destroy(cp);
+            reference.GetComponent<Chessman>().AddExperience();
         }
 
         //Set the Chesspiece's original location to be empty
