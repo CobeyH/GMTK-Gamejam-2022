@@ -100,6 +100,8 @@ public class Dice : MonoBehaviour
 
         // Show final dice value in Console
         reference.GetComponent<Chessman>().RerollPiece(finalSide);
+        // Unhighlight the piece when the phase changes.
+        reference.GetComponent<Chessman>().DestroyMovePlates();
         // When the dice stops. Switch to the moving phase.
         yield return new WaitForSeconds(0.5f);
         controller.GetComponent<Game>().NextPhase();

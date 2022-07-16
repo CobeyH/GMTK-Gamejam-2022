@@ -21,6 +21,7 @@ public class Chessman : MonoBehaviour
     private bool firstMove = true;
     // Experience is used to determine how likely a piece is to reroll into something good.
     private int experience = 0;
+    private int numRolls = 0;
 
     //References to all the possible Sprites that this Chesspiece could be
     public Sprite black_queen, black_knight, black_bishop, black_king, black_rook, black_pawn;
@@ -121,6 +122,8 @@ public class Chessman : MonoBehaviour
             // Highlight active piece
             if (sc.GetCurrentPhase() == "roll")
             {
+
+                DestroyMovePlates();
                 MovePlateSelfSpawn(xBoard, yBoard);
             }
             else
@@ -372,6 +375,10 @@ public class Chessman : MonoBehaviour
                 break;
             case 6:
                 this.name = player + "_king";
+                Game gm = controller.GetComponent<Game>();
+                string activePlayer = gm.GetCurrentPlayer();
+                gm.SetKingCount(activePlayer, gm.GetKingCount(activePlayer) + 1);
+                numRolls = 3;
                 break;
         }
         this.GetComponent<SpriteRenderer>().sprite = GetRerolledSprite(pieceIndex);

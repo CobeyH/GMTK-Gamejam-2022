@@ -25,6 +25,8 @@ public class Game : MonoBehaviour
 
     //Game Ending
     private bool gameOver = false;
+    private int whiteKingCount = 1;
+    private int blackKingCount = 1;
 
     //Unity calls this right when the game starts, there are a few built in functions
     //that Unity can call for you
@@ -117,6 +119,22 @@ public class Game : MonoBehaviour
     {
         currentPhase = currentPhase == "roll" ? "move" : "roll";
         SetActivePiece(null);
+    }
+
+    public void SetKingCount(string player, int newCount)
+    {
+        if (player == "white")
+        {
+            whiteKingCount = newCount;
+        }
+        else
+        {
+            blackKingCount = newCount;
+        }
+    }
+    public int GetKingCount(string player)
+    {
+        return player == "white" ? whiteKingCount : blackKingCount;
     }
 
     public void Update()

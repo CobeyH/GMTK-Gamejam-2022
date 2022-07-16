@@ -41,14 +41,26 @@ public class MovePlate : MonoBehaviour
     {
         controller = GameObject.FindGameObjectWithTag("GameController");
         Chessman chessman = reference.GetComponent<Chessman>();
+        Game gm = controller.GetComponent<Game>();
 
         //Destroy the victim Chesspiece
         if (plateType == PlateType.attack)
         {
-            GameObject cp = controller.GetComponent<Game>().GetPosition(matrixX, matrixY);
-
-            if (cp.name == "white_king") controller.GetComponent<Game>().Winner("black");
-            if (cp.name == "black_king") controller.GetComponent<Game>().Winner("white");
+            GameObject cp = gm.GetPosition(matrixX, matrixY);
+            string activePlayer = gm.GetCurrentPlayer();
+            string otherPlayer = activePlayer == "white" ? "black" : "white";
+            if (cp.name == otherPlayer + "_king")
+            {
+                int kings = gm.GetKingCount(otherPlayer);
+                if (kings <= 1)
+                {
+                    gm.Winner(activePlayer);
+                }
+                else
+                {
+                    gm.SetKingCount(otherPlayer, kings - 1);
+                }
+            }
 
             Destroy(cp);
             chessman.AddExperience();
