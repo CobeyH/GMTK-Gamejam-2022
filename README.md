@@ -1,4 +1,5 @@
 # Roll Chess
+This game was made for the 2022 GMTK GameJam. The game was made in 48 hours to fit the theme "Roll of the Dice".
 ## Game rules:
 This game is like the classic game of chess, but with a spin. Each player’s turn is split into two phases, a roll phase and then a move phase. When your opponent’s last king is removed for any reason the game immediately ends.
 
