@@ -6,8 +6,8 @@ TagManager:
   tags:
   - MovePlate
   - WinnerText
-  - RestartText
   - DicePotential
+  - HelpText
   layers:
   - Default
   - TransparentFX
