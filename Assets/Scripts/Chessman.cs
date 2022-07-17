@@ -23,6 +23,8 @@ public class Chessman : MonoBehaviour
     private int experience = 0;
     private int numRolls = 0;
 
+    private GameObject[] rollIndicators = new GameObject[3];
+
     //References to all the possible Sprites that this Chesspiece could be
     public Sprite black_queen, black_knight, black_bishop, black_king, black_rook, black_pawn;
     public Sprite white_queen, white_knight, white_bishop, white_king, white_rook, white_pawn;
@@ -362,6 +364,7 @@ public class Chessman : MonoBehaviour
         Game gm = controller.GetComponent<Game>();
         int pieceIndex = ApplyExperienceModifier(diceValue);
         numRolls++;
+        // Make sure kings can always reroll to prevent soft locks.
         if (this.name == "white_king" || this.name == "black_king")
         {
             string activePlayer = gm.GetCurrentPlayer();
@@ -402,8 +405,9 @@ public class Chessman : MonoBehaviour
         }
         this.GetComponent<SpriteRenderer>().sprite = GetRerolledSprite(pieceIndex);
         string stringRolls = numRolls == 1 ? "One" : numRolls == 2 ? "Two" : "Three";
-        GameObject ec = Instantiate(Resources.Load(stringRolls + "_reroll") as GameObject, new Vector3(this.transform.position.x + 0.025f, this.transform.position.y, -0.01f), Quaternion.identity);
-        ec.transform.parent = this.transform;
+        GameObject ind = Instantiate(Resources.Load(stringRolls + "_reroll") as GameObject, new Vector3(this.transform.position.x + 0.025f, this.transform.position.y, -0.01f), Quaternion.identity);
+        ind.transform.parent = this.transform;
+        rollIndicators[numRolls - 1] = ind;
     }
 
     public Sprite GetRerolledSprite(int diceValue)
@@ -453,7 +457,11 @@ public class Chessman : MonoBehaviour
             experience++;
             UpdateExperienceIndicators(false);
         }
-        numRolls = Mathf.Max(numRolls - 1, 0);
+        if (numRolls > 0)
+        {
+            numRolls--;
+            Destroy(rollIndicators[numRolls]);
+        }
     }
     public int GetExperience()
     {
