@@ -483,6 +483,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: DicePotential
       objectReference: {fileID: 0}
+    - target: {fileID: 7675538741070130730, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 85e6cb8328c3ce1c8b27b2f47f147ebd,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}
 --- !u!1 &663323683
@@ -5513,7 +5519,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 281.8879, y: 69.0315}
+  m_SizeDelta: {x: 506.7829, y: 93.4545}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1017282300
 MonoBehaviour:
@@ -5528,7 +5534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5536,7 +5542,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 24fde2e5774ae7e4584af7daf5fcb6b3, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -5740,6 +5746,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: DicePotential
       objectReference: {fileID: 0}
+    - target: {fileID: 7675538741070130730, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d7a32f00dce1a50ac8402f4bc130bf55,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}
 --- !u!850595691 &1473151877
@@ -5897,6 +5909,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: DicePotential
       objectReference: {fileID: 0}
+    - target: {fileID: 7675538741070130730, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c0afb44ce383794b48c956097be8b0d1,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}
 --- !u!4 &1805377075 stripped
@@ -5998,6 +6016,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: DicePotential
       objectReference: {fileID: 0}
+    - target: {fileID: 7675538741070130730, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 08c8b0687b2005b85a82b67394664567,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}
 --- !u!4 &1908208777 stripped
@@ -6189,6 +6213,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: DicePotential
       objectReference: {fileID: 0}
+    - target: {fileID: 7675538741070130730, guid: 0898820907cd0b36bb844c3eab1e2ca3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5c4ac7411260fd43dbfeaf11e5614476,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0898820907cd0b36bb844c3eab1e2ca3, type: 3}
 --- !u!1001 &1857020874770370711
