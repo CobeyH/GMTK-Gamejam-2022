@@ -162,9 +162,10 @@ public class Game : MonoBehaviour
         gameOver = true;
 
         //Using UnityEngine.UI is needed here
+        Debug.Log("Displaying Text");
         GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().enabled = true;
-        GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().text = playerWinner + " is the winner";
+        GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().text = char.ToUpper(playerWinner[0]) + playerWinner.Substring(1) + " Wins! \n" + "Click to Restart";
 
-        GameObject.FindGameObjectWithTag("RestartText").GetComponent<Text>().enabled = true;
+        //GameObject.FindGameObjectWithTag("RestartText").GetComponent<Text>().enabled = true;
     }
 }
