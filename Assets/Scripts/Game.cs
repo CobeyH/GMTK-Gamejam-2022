@@ -27,6 +27,7 @@ public class Game : MonoBehaviour
     private bool gameOver = false;
     private int whiteKingCount = 1;
     private int blackKingCount = 1;
+    private string[] HelpText = { "", "" };
 
     //Unity calls this right when the game starts, there are a few built in functions
     //that Unity can call for you
@@ -113,12 +114,24 @@ public class Game : MonoBehaviour
         {
             currentPlayer = "white";
         }
+        UpdateHelptext();
     }
 
     public void NextPhase()
     {
         currentPhase = currentPhase == "roll" ? "move" : "roll";
         SetActivePiece(null);
+        UpdateHelptext();
+    }
+
+    private void UpdateHelptext()
+    {
+
+        HelpText[0] = char.ToUpper(currentPlayer[0]) + currentPlayer.Substring(1) + "'s Turn";
+        HelpText[1] = currentPhase == "roll" ? "Roll Phase" : "Move Phase";
+        GameObject.FindGameObjectWithTag("HelpText").GetComponent<Text>().text = HelpText[0] + "\n" + HelpText[1];
+
+        GameObject.FindGameObjectWithTag("HelpText").GetComponent<Text>().text = HelpText[0] + "\n" + HelpText[1];
     }
 
     public void SetKingCount(string player, int newCount)
@@ -165,7 +178,5 @@ public class Game : MonoBehaviour
         Debug.Log("Displaying Text");
         GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().enabled = true;
         GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().text = char.ToUpper(playerWinner[0]) + playerWinner.Substring(1) + " Wins! \n" + "Click to Restart";
-
-        //GameObject.FindGameObjectWithTag("RestartText").GetComponent<Text>().enabled = true;
     }
 }

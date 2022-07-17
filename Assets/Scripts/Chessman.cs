@@ -402,7 +402,6 @@ public class Chessman : MonoBehaviour
         }
         this.GetComponent<SpriteRenderer>().sprite = GetRerolledSprite(pieceIndex);
         string stringRolls = numRolls == 1 ? "One" : numRolls == 2 ? "Two" : "Three";
-        Debug.Log(stringRolls + "_reroll");
         GameObject ec = Instantiate(Resources.Load(stringRolls + "_reroll") as GameObject, new Vector3(this.transform.position.x + 0.025f, this.transform.position.y, -0.01f), Quaternion.identity);
         ec.transform.parent = this.transform;
     }
